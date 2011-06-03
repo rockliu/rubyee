@@ -1,0 +1,27 @@
+
+<% if @forum.errors.count > 0 %>
+<div class="errors">
+    <%= error_messages_for :forum %>
+</div>
+<% end %>
+<div id="create_forum">
+  <% form_for @forum do |f| %>
+  <table class="register">
+    <tr class="title">
+      <td>编辑讨论区</td>
+    </tr>
+    <tr>
+      <td>
+         <div style="margin-top:10px;margin-left:14px;">
+            <%= link_to '返回', forums_path %>&nbsp;
+            <%= link_to '显示', forum_path(@forum) %>
+         </div>
+         <%= render :partial => 'form',:locals => {:f => f} -%>
+      </td>
+    <tr>
+  </table>
+  <div style="margin-top:10px;margin-bottom:10px;margin-left:14px;">
+  <%= submit_tag "保存",:class=>"button"%>
+  </div>
+<% end %>
+</div>

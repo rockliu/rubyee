@@ -1,0 +1,69 @@
+<div id="article_content">
+  <table class="article">
+    <tr class="title">
+      <td>讨论区:<%= @forum.name -%></td>
+    </tr>
+    <tr>
+      <td>
+        <div style="margin-left:5px;margin-top:5px">
+          <%= link_to '<讨论区',forums_path -%>
+        </div>
+
+          <div style="margin-top:10px;margin-bottom:1px;text-align:center;">
+            <% if @topics_pages.page_count >1 %>
+            第
+            <strong>
+            <%= pagination_links @topics_pages,:params => params %>
+            </strong>
+            页
+           <% end%>
+          </div>
+          <div id="forum_create" style="margin-left:10px;margin-bottom:3px;margin-top:0px;">
+          <% if is_logged_in? -%>
+          <%= link_to '创建主题',new_forum_topic_path(:forum_id => @forum)-%>
+          <% else %>
+          <%= link_to '登录',:controller => 'account',:action => 'login' -%>
+          <% end %>
+          </div>
+          <div>
+              <table id="topics" cellpadding="0" cellspacing="1">
+                <tr>
+                  <th class="name">主题</th>
+                  <th class="reply">帖子数</th>
+                  <th class="author">作者</th>
+                </tr>
+              
+              <% @topics.each do |topic| %>
+                <tr class="<%= cycle('odd','even')%>">
+                  <td class="name">
+                    <div style="margin-top:10px;margin-left:15px;">
+                      <%= link_to topic.name, forum_topic_posts_path(:forum_id => @forum,:topic_id => topic) -%>
+                    </div>
+                   
+                    <% if is_logged_in? and logged_in_user.has_role?('论坛版主') %>
+                        <div style="margin-bottom:10px;margin-top:10px;font-size:70%;margin-left:15px;">
+                        <%= link_to '编辑',edit_forum_topic_path(:forum_id => @forum,:id => topic) -%><br />
+                        <%= link_to '删除',forum_topic_path(:forum_id => @forum,:id => topic),:method => :delete,
+                                          :confirm => '确定删除该主题？'%>
+                        </div>
+                    <% end -%>
+                  </td>
+                  <td class="reply" align="center"><%= topic.posts_count %> </td>
+                  <td class="author"><%= link_to topic.user.username, user_path(:id => topic.user)%></td>
+                </tr>
+              <% end %>
+              </table>
+          </div>
+          <div style="margin-top:10px;margin-bottom:15px;text-align:center;">
+            <% if @topics_pages.page_count >1 %>
+            第
+            <strong>
+            <%= pagination_links @topics_pages,:params => params %>
+            </strong>
+            页
+           <% end%>
+          </div>
+      </td>
+    </tr>
+  </table>
+</div>

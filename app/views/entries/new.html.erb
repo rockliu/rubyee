@@ -1,0 +1,36 @@
+<% javascript_include_tag "/javascripts/textile-editor.js" %>
+<% if @entry.errors.count > 0 %>
+<div class="errors">
+    <%= error_messages_for :entry %>
+</div>
+<% end %>
+<div id="create_category">
+  <% form_for (:entry,:url=>entries_path) do |f| -%>
+  <table class="category_index">
+    <tr class="title">
+      <td>创建博客日志</td>
+    </tr>
+    <tr>
+      <td>
+        <div style="width:575px">
+        <div style="margin-top:10px;margin-left:14px;">
+            <%= link_to '取消',entries_path(:user_id => @logged_in_user) %>
+        </div>
+        <div style="margin-top:10px;margin-left:14px;">
+          <b>标题：</b><br />
+          <%= f.text_field :title,:class=>'entry_text' %>
+        </div>
+        <div style="margin-top:10px;margin-left:14px;">
+          <b>日志内容：</b><br />
+          <%= textile_editor 'entry', 'body', :class=>'entry_area'-%>
+        </div>
+        </div>
+      </td>
+    </tr>
+  </table>
+  <div style="margin-top:10px;margin-left:14px;margin-bottom:10px">
+  <%= submit_tag '保存',:class=>"button"%>
+  </div>
+  <%= textile_editor_initialize -%>
+  <% end -%>
+</div>

@@ -1,0 +1,26 @@
+<tr class="<%= cycle('odd','even') -%>">
+  <td>
+    <div style="margin-top:5px;margin-bottom:5px;margin-left:10px;">
+    <%= user.username -%>
+    </div>
+  </td>
+  <td>
+    <div style="margin-top:5px;margin-bottom:5px;margin-left:10px;">
+    <%= user.email -%>
+    </div>
+  </td>
+  <td align="center">
+    <%= user.enabled ? "是" : "否" -%>
+    
+    <% unless user == logged_in_user -%>
+      <% if user.enabled %>
+        [<%= link_to "禁用", user_url(user.id), :method => :delete %>]
+      <% else %>
+        [<%= link_to "启用", enable_user_url(user.id),:method => :put %>]
+      <% end %>
+    <% end %>
+  </td>
+  <td align="center">
+    [<%= link_to '编辑权限',user_roles_url(user) %>]
+  </td>
+</tr>

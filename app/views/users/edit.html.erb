@@ -1,0 +1,50 @@
+<% if @user.errors.count > 0 %>
+<div class="errors">
+    <%= error_messages_for :user %>
+</div>
+<% end %>
+<div id="usernew">
+    <% form_for :user,
+            :url => user_url(@user),
+            :html => { :method => :put } do |f| -%>
+    <table class="register">
+        <tr  class="title">
+            <td><b>编辑账户</b></td>
+        </tr>
+        <tr style="height:10px">
+        </tr>
+        <tr>
+            <td>
+                <div style="margin-left:220px;margin-top:10px">
+                  <%= link_to '显示账户信息' , user_path %>
+                </div>
+                <div style="margin-left:15px;margin-top:10px">
+                    <b>电子邮件：</b><br />
+                    <%= f.text_field :email,:size => 28,:class=>"text" %>
+                </div>
+                <div style="margin-left:15px;margin-top:10px">
+                    <b>密码：</b><br />
+                    <%= f.password_field :password,:size => 28,:class=>"text" %>
+                </div>
+                <div style="margin-left:15px;margin-top:10px">
+                    <b>确认密码：</b><br />
+                     <%= f.password_field :password_confirmation,:size => 28,:class=>"text" %>
+                </div>
+                <div style="margin-left:15px;margin-top:10px">
+                    <b>博客标题：</b><br />
+                     <%= f.text_field :blog_title,:size => 28,:class=>"text" %>
+                </div>
+                <div style="margin-left:15px;margin-top:10px">
+                    <b>个人资料：</b><br />
+                    <%= f.text_area :profile,:class=>'textarea' %>
+                </div>
+                <div style="margin-left:15px;margin-top:10px">
+                    <%= submit_tag '保存' ,:class => "button"%>
+                </div>
+                <div style="margin-left:15px;margin-top:10px">
+                </div>
+            </td>
+        </tr>
+    </table>
+    <% end -%>
+</div>

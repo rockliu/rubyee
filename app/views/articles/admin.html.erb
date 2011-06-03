@@ -1,0 +1,44 @@
+<div id="create_page">
+  <table class="page_index">
+    <tr class="title">
+      <td>资讯管理</td>
+    </tr>
+    <tr>
+	<td>
+          <div style="margin-top:10px;margin-bottom:0px;text-align:center;">
+       <% if @articles_pages.page_count >1 %>
+            第
+            <strong>
+              <%= pagination_links @articles_pages, :params => params %>
+            </strong>
+            页
+        <% end %>
+        </div>
+	    &nbsp;&nbsp;&nbsp;<%= link_to '创建资讯',new_article_path %>
+	</td>
+    </tr>
+     <tr>
+	<td>
+	  <table id="pages" cellpadding="1" cellspacing="1">
+	   <th>资讯列表</th>
+	   <th>操作</th>
+	   <% @articles.each do |article| %>
+	   <tr class="<%= cycle('odd','even') -%>">
+		<td class="name">
+                  <div style="margin-top:5px;margin-bottom:5px;margin-left:10px;">
+		     <%= link_to article.title,article_url(article) %>
+                  </div>
+		</td>
+		<td class="operation">
+		    [<%= link_to '编辑', edit_article_path(article)%>]|[<%= link_to '删除', article_path(article),:method => :delete,
+                          :confirm =>"确定删除该资讯吗？"%>]
+		</td>
+	   </tr>
+          <% end %>
+	  </table>
+	</td>
+    </tr>
+    <tr style="height:10px">
+    </tr>
+  </table>
+</div>

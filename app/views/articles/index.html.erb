@@ -1,0 +1,65 @@
+<% content_for :head do %>
+<%= auto_discovery_link_tag %>
+<% end %>
+<div id="create_page">
+  <table class="page_index">
+    <tr class="title">
+      <td>资讯文章</td>
+    </tr>
+    <tr>
+      <td>
+        <div style="margin-top:10px;margin-bottom:15px;text-align:center;">
+        <% if @articles_pages.page_count >1 %>
+        第
+        <strong>
+          <%= pagination_links @articles_pages, :params => params %>
+        </strong>
+        页
+        <% end %>
+        </div>
+      <td>
+    </tr>
+    <% @articles.each do |article| %>
+    <tr>
+      <td>
+       <div>
+            <div id="article_title">
+            <%= link_to article.title,article_url(article)%>
+            </div>
+            <div id ="article_synopsis">
+            <%= article.synopsis %>
+            </div>
+            <div id ="article_links">
+              <table id="article_bottom">
+                <tr>
+                  <td align="left">
+                  </td>
+                  <td align="right">
+                    <% if article.category %>
+                    所属分类:<%= link_to article.category.name,category_articles_path(article.category) %>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <% end %>
+                    <%= article.user.username %>创建于<%= article.created_at.strftime "%Y-%m-%d %H:%M" %>
+                  </td>
+                </tr>
+              </table>
+            </div>
+       </div>
+      </td>
+    </tr>
+    <% end %>
+    <tr>
+      <td>
+        <div style="margin-top:10px;margin-bottom:15px;text-align:center">
+        <% if @articles_pages.page_count >1 %>
+        第
+        <strong>
+          <%= pagination_links @articles_pages, :params => params %>
+        </strong>
+        页
+        <% end %>
+        </div>
+      <td>
+    </tr>
+  </table>
+</div>

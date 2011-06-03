@@ -1,0 +1,57 @@
+<table id="navigator">
+	<tr>
+		<td>
+			<%= link_to '主页',index_url %>
+		</td>
+		<td>
+			|
+		</td>
+		<td>
+			<%= link_to '资讯',articles_url %>
+		</td>
+		<td>
+			|
+		</td>
+		<td>
+			<%= link_to '论坛',forums_url %>
+		</td>
+		<td>
+			|
+		</td>
+		<td>
+			<%= link_to '博客',blogs_url %>
+		</td>
+		
+		<% if logged_in_user and logged_in_user.has_role?('管理员')%>
+		<td>
+			|
+		</td>
+	        <td>
+			<%= link_to '页面编辑',pages_path %>
+		</td>
+		<td>
+			|
+		</td>
+		<td>
+		<td>
+			<%= link_to '用户管理', users_path %>
+		</td>
+	        <% end %>
+	
+	        <% if logged_in_user and logged_in_user.has_role?('编辑')%>
+		<td>
+			|
+		</td>
+		<td>
+			<%= link_to '资讯管理',admin_articles_path %>
+		</td>
+		<td>
+			|
+		</td>
+		<td>
+			<%= link_to '资讯分类管理',admin_categories_path %>
+		</td>
+                <% end %>
+	</tr>
+</table>
+

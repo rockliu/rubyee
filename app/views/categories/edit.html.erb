@@ -1,0 +1,28 @@
+<% if @category.errors.count > 0 %>
+<div class="errors">
+    <%= error_messages_for :category %>
+</div>
+<% end %>
+<div id="create_category">
+<% form_for @category do |f| -%>
+  <table class="category_index">
+    <tr class="title">
+      <td>编辑资讯分类</td>
+    </tr>
+    <tr>
+      <td>
+        <div style="margin-top:10px;margin-left:14px;">
+            <%= link_to '取消', admin_categories_url %>
+        </div>
+        <div style="margin-top:10px;margin-left:14px;">
+          <b>分类名称：</b><br />
+          <%= f.text_field :name,:class=>'category_text' %>
+        </div>
+      </td>
+    </tr>
+  </table>
+  <div style="margin-top:10px;margin-left:14px;margin-bottom:10px">
+  <%= submit_tag '保存',:class=>"button"%>
+  </div>
+  <% end -%>
+</div>

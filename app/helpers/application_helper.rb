@@ -1,0 +1,62 @@
+# Methods added to this helper will be available to all templates in the application.
+module ApplicationHelper
+#验证信息中文化的方法
+  def error_messages_for(object_name, options = {})
+    options = options.symbolize_keys
+    object = instance_variable_get("@#{object_name}")
+    unless object.errors.empty?
+      error_lis = []
+      object.errors.each{ |key, msg| error_lis << content_tag("li", msg) }
+      content_tag("div", content_tag(options[:header_tag] || "h2", "发生#{object.errors.count}个错误" ) + content_tag("ul", error_lis), "id" => options[:id] || "errorExplanation", "class" => options[:class] || "errorExplanation" )
+    end
+  end
+  def coderay(text)     
+    text.gsub(/\<code( lang="(.+?)")?\>(.+?)\<\/code\>/m) do    
+      CodeRay.scan($3, $2).div(:css => :class,:line_numbers => :inline,:tab_width=>2)     
+    end    
+  end
+  
+  def time_ago_in_words(from_time, include_seconds = false)
+    distance_of_time_in_words(from_time, Time.now, include_seconds)
+  end
+
+  def distance_of_time_in_words(from_time, to_time = 0, include_seconds = false)
+      from_time = from_time.to_time if from_time.respond_to?(:to_time)
+      to_time = to_time.to_time if to_time.respond_to?(:to_time)
+      distance_in_minutes = (((to_time - from_time).abs)/60).round
+      distance_in_seconds = ((to_time - from_time).abs).round
+      case distance_in_minutes
+          when 0..1
+              return (distance_in_minutes == 0) ? '不到 1 分钟' : '1 分钟' unless include_seconds
+          case distance_in_seconds
+              when 0..4   then '不到 5 秒'
+              when 5..9   then '不到 10 秒'
+              when 10..19 then '不到 20 秒'
+              when 20..39 then '半分钟'
+              when 40..59 then '不到 1 分钟'
+              else             '1 分钟'
+          end
+          when 2..44           then "#{distance_in_minutes} 分钟"
+          when 45..89          then '大约 1 小时'
+          when 90..1439        then "大约 #{(distance_in_minutes.to_f / 60.0).round} 小时"
+          when 1440..2879      then '1 天'
+          when 2880..43199     then "#{(distance_in_minutes / 1440).round} 天"
+          when 43200..86399    then '大约 1 个月'
+          when 86400..525599   then "#{(distance_in_minutes / 43200).round} 个月"
+          when 525600..1051199 then '大约 1 年'
+      else                      "#{(distance_in_minutes / 525600).round} 年"
+     end
+  end
+  
+  def cut_string(charset,src,start,length)
+    require "iconv"
+    @conv=Iconv.new("UTF-16",charset)
+    @reverse_conv=Iconv.new(charset,"UTF-16")
+    p_start=start.class==Fixnum&&start>=0
+    p_length=length.class==Fixnum&&length>=0
+    return "" unless src&&p_start&&p_length
+    src_utf16=@conv.iconv(src)
+    cutted_src_utf_16=src_utf16[2*start+2,2*length]
+    @reverse_conv.iconv(cutted_src_utf_16)
+  end
+end

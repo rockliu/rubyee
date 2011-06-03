@@ -1,0 +1,59 @@
+<div id="create_page">
+  <table class="page_index">
+    <tr class="title">
+      <td><%= blog_title(@user) %></td>
+    </tr>
+    <tr>
+      <td>
+        <div style="margin-top:10px;margin-bottom:15px;text-align:center">
+          <% if @entry_pages.page_count >1 %>
+          第
+          <strong>
+            <%= pagination_links @entry_pages, :params => params %>
+          </strong>
+          页
+          <% end %>
+        </div>
+        <% @entries.each do |entry| -%>
+          <div style="border-bottom: 1px dashed #CD2A2B;margin-top:10px;">
+          <div id="article_title">
+            <%= link_to entry.title,entry_path(:user_id => entry.user,:id => entry)%>
+          </div>
+          <div id="article_synopsis">
+              <%= if entry.body.size>200
+                    textilize(cut_string('utf-8',entry.body,0,200) + "..." )
+                  else
+                    textilize(entry.body)
+                  end
+               %>
+          </div>
+          <div style="margin-left:10px;margin-bottom:10px;">
+            <table width="780px">
+              <tr>
+                <td>
+                   <%= link_to "#{entry.comments_count} 条评论",entry_path(:user_id => entry.user,:id => entry)-%>
+                </td>
+                <td align="right">
+                  <% if is_logged_in? and logged_in_user.id == @user.id -%>
+                    <%= link_to '编辑' , edit_entry_path(:user_id => entry.user,:id => entry)%>
+                    <%= link_to '删除' , entry_path(:user_id => entry.user,:id => entry),:confirm => '确定删除该日志？',:method => :delete %>
+                  <% end -%>
+                </td>
+              </tr>
+            </table>
+          </div>
+          </div>
+        <% end -%>
+        <div style="margin-top:10px;margin-bottom:15px;text-align:center">
+          <% if @entry_pages.page_count >1 %>
+          第
+          <strong>
+            <%= pagination_links @entry_pages, :params => params %>
+          </strong>
+          页
+          <% end %>
+         </div>
+      </td>
+    </tr>
+  </table>
+</div>

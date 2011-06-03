@@ -1,0 +1,44 @@
+<div id="usernew">
+    <table class="register">
+        <tr  class="title">
+            <td><b>用户信息</b></td>
+        </tr>
+        <tr style="height:10px">
+        </tr>
+        <tr>
+            <td align="center">
+                <b>用户:<%= @user.username %></b>
+            </td>
+        </tr>
+        <tr>
+            <td align="center">
+               该用户注册于<%= @user.created_at.strftime('%Y年%m月%d日 %H时%M分%S秒') %>
+            </td>
+        </tr>
+        <tr>
+            <td align="center">
+               <%= @user.profile %>
+            </td>
+        </tr>
+        <tr>
+          <td>
+            <div style="margin-left:10px;margin-top:20px">
+              <b>博客日志</b>
+            </div>
+            <% for entry in @entries %>
+              <div style="margin-left:10px;margin-top:5px">
+                <%= link_to entry.title,entry_path(:user_id => @user,:id => entry)%>
+              </div>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <td><div style="margin-left:10px;margin-top:30px;">
+          <%= link_to ">>查看用户#{@user.username}的所有日志",entries_path(:user_id => @user)%>
+          </div></td>
+        </tr>
+        </tr>
+                <tr style="height:10px">
+        </tr>
+    </table>
+</div>

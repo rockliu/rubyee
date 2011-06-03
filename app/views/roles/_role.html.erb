@@ -1,0 +1,18 @@
+<tr class="<%=cycle('odd','even')%>">
+  <td>
+    <%= role.name %>
+  </td>
+  <td>
+    [
+      <% if @user.has_role?(role.name) %>
+        <%= link_to '移除角色',
+                   user_role_url(:id => role.id,:user_id => @user.id),
+                   :method => :delete%>
+      <% else %>
+        <%= link_to '分配角色',
+                   user_role_url(:id => role.id,:user_id => @user.id),
+                   :method => :put%>
+      <% end %>
+    ]
+  </td>
+</tr>

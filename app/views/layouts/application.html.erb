@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <title>RubyEE</title>
+    <%= stylesheet_link_tag 'main' %>
+    <%= stylesheet_link_tag 'coderay' %>
+    <%= javascript_include_tag :defaults %>
+    <%= yield :head %>
+  </head>
+  <body>
+    <div id="container">
+      <div id ="topmenu">
+	<%= render :partial => 'layouts/top_menu' %>
+      </div>
+      <div id="header">
+	<table  id="top" cellspacing="0px" cellpadding="0">
+	  <tr>
+	    <td>
+	      <%= image_tag 'logo.jpg',:alt =>"RubyEE" %>
+	    </td>
+	    <td style="width:3px">
+	    </td>
+	    <td>
+	      <%= image_tag 'top.jpg',:alt =>"RubyEE" %>
+	    </td>
+	  </tr>
+	</table>
+      </div>
+      <div id="navigator">
+	    <%= render :partial => 'layouts/menu' %>
+      </div>
+      <div id="content">
+        <% if flash[:notice] -%>
+          <div id="notice">
+           <%= flash[:notice] %>
+          </div>
+        <% end -%>
+        <% if flash[:error] -%>
+          <div id="error">
+           <%= flash[:error] %>
+          </div>
+        <% end -%>
+        <%= yield %>
+      </div>
+    </div>
+  </body>
+</html>

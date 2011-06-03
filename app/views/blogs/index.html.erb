@@ -1,0 +1,50 @@
+<div id="create_page">
+  <table class="page_index">
+    <tr class="title">
+      <td>最新发布的博客</td>
+    </tr>
+    <tr>
+      <td>
+        <div style="margin-top:10px;margin-bottom:15px;text-align:center;">
+        <% if @entry_pages.page_count >1 %>
+        第
+        <strong>
+          <%= pagination_links @entry_pages, :params => params %>
+        </strong>
+        页
+        <% end %>
+        </div>
+      <td>
+    </tr>
+    <% @entries.each do |entry| %>
+    <tr>
+      <td>
+       <div style="border-bottom:1px dashed #CD2A2B">
+            <div id="article_title">
+            <%= link_to entry.user.username,entries_url(:user_id => entry.user) %>
+            </div>
+            <div id ="article_synopsis">
+            <b><%= entry.title %></b>
+            </div>
+            <div style="margin-left:640px;">
+               发布于<%= time_ago_in_words(entry.created_at)%>前
+            </div>
+       </div>
+      </td>
+    </tr>
+    <% end %>
+    <tr>
+      <td>
+        <div style="margin-top:10px;margin-bottom:15px;text-align:center">
+        <% if @entry_pages.page_count >1 %>
+        第
+        <strong>
+          <%= pagination_links @entry_pages, :params => params %>
+        </strong>
+        页
+        <% end %>
+        </div>
+      <td>
+    </tr>
+  </table>
+</div>

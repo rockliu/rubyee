@@ -1,0 +1,29 @@
+<% if @topic.errors.count > 0 %>
+<div class="errors">
+    <%= error_messages_for :topic %>
+</div>
+<% end %>
+
+<div id="create_topic">
+  <% form_for :topic,:url => forum_topic_path(:id => @topic,:forum_id => @topic.forum),:html => {:method => :put} do |f| %>
+  <table class="topic_new">
+    <tr class="title">
+      <td>编辑主题</td>
+    </tr>
+    <tr>
+      <td>
+        <div style="margin-top:10px;margin-left:14px;">
+            <%= link_to '返回', forum_topics_path %>
+         </div>
+        <div style="margin-top:10px;margin-left:14px;">
+        <b>标题：</b><br />
+        <%= f.text_field :name, :class=>'topic_text'-%>
+        </div>
+      </td>
+    </tr>
+  </table>
+  <div style="margin-left:14px;margin-top:10px;margin-bottom:10px;">
+  <%= submit_tag '保存',:class=>"button"%>
+  </div>
+  <% end -%>
+</div>

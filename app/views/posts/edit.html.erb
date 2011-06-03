@@ -1,0 +1,32 @@
+<% if @post.errors.count > 0 %>
+<div class="errors">
+    <%= error_messages_for :post %>
+</div>
+<% end %>
+<div id="create_topic">
+<% form_for :post, :url => forum_topic_post_path(:id => @post,:topic_id => @post.topic,
+                                     :forum_id => @post.topic.forum) ,:html => {:method => :put} do |f| -%>
+  <table class="topic_new">
+    <tr class="title">
+      <td>编辑帖子</td>
+    </tr>
+    <tr>
+      <td>
+        <div style="margin-top:10px;margin-left:14px;">
+            <%= link_to '取消',forum_topic_posts_path(:id => @post.topic,:forum_id => @post.topic.forum) -%>
+         </div>
+        <div style="margin-top:10px;margin-left:14px;word-wrap:break-word;">
+        <b>主题: <%=@post.topic.name%></b>
+        </div>
+        <div style="margin-top:10px;margin-left:14px;">
+        <b>帖子内容:</b>
+         <%= f.text_area :body,:class=>"post_area" -%>
+        </div>
+      </td>
+    </tr>
+  </table>
+  <div style="margin-left:14px;margin-top:10px;margin-bottom:10px;">
+  <%= submit_tag '保存',:class=>"button"%>
+  </div>
+  <% end -%>
+</div>

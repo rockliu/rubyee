@@ -1,0 +1,36 @@
+<div id="create_page">
+  <table class="page_index">
+    <tr class="title">
+      <td>资讯分类管理</td>
+    </tr>
+    <tr>
+	<td>
+          <br />
+	    &nbsp;&nbsp;&nbsp;<%= link_to '创建资讯分类', new_category_path %>
+	</td>
+    </tr>
+    <tr>
+	<td>
+	  <table id="pages" cellpadding="1" cellspacing="1">
+	   <th>资讯分类列表</th>
+	   <th>操作</th>
+	   <% @categories.each do |category| %>
+	   <tr class="<%= cycle('odd','even') -%>">
+		<td class="name">
+                  <div style="margin-top:5px;margin-bottom:5px;margin-left:10px;">
+		     <%= link_to category.name,category_articles_url(:category_id => category )%>
+                  </div>
+		</td>
+		<td class="operation">
+                    [<%= link_to '编辑',edit_category_url(category)%>]|[<%= link_to '删除',category_path(category),:method => :delete,
+                                               :confirm => "确定删除该分类？"%>]
+		</td>
+	   </tr>
+          <% end %>
+	  </table>
+	</td>
+    </tr>
+    <tr style="height:10px">
+    </tr>
+  </table>
+</div>

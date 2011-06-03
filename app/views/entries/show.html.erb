@@ -1,0 +1,54 @@
+<div id="article_content">
+  <table class="article">
+    <tr class="title">
+      <td>日志内容</td>
+    </tr>
+    <tr>
+      <td>
+       <div style="margin-top:10px;margin-left:10px;">
+        <%= link_to blog_title(@entry.user),entries_path(:user_id => @entry.user)%>
+       </div>
+       <div id="article_content_title">
+        <%= @entry.title %>
+       </div>
+       <div id="article_content_body">
+         <%= textilize(coderay(@entry.body)) %>
+       </div>
+       <div style="margin-top:10px;margin-left:10px;margin-right:10px;border-top:1px solid #CD2A2B">
+        <p>
+          <% if @entry.comments.count > 0%>
+          <b>评论：</b>
+          <% end %>
+        </p>
+        <% @entry.comments.each do |comment| -%>
+        <div style="border-bottom:1px dashed #CD2A2B">
+          <p><%= comment.user.username %> 于 <%= comment.created_at.strftime "%Y-%m-%d %H:%M"%>说道：</p>
+          <p><%=h comment.body %></p>
+          <% if is_logged_in? and logged_in_user.id == @entry.user.id -%>
+            <p><%= link_to '删除该评论' ,comment_path( :user_id => @entry.user,
+                                                     :entry_id => @entry.id,
+                                                     :id => comment.id),
+                                                     :comfirm => "确定删除该评论？",:method => :delete -%></p>
+          <% end -%>
+          
+        </div>
+        <% end -%>
+       </div>
+       
+       <div style="margin-top:10px;margin-left:10px;">
+        <p>
+          <b>发表评论：</b>
+        </p>
+        <% form_for (:comment,:url => comments_path(:user_id => @entry.user,:entry_id => @entry)) do |f| -%>
+        <div>
+          <%= f.text_area :body,:rows => 4,:cols => 40 %>
+        </div>
+        <div style="margin-top:10px;margin-bottom:15px;">
+          <%= submit_tag '提交评论', :class=>"button" %>
+        </div>
+        <% end -%>
+       </div>
+      </td>
+    </tr>
+  </table>
+</div>

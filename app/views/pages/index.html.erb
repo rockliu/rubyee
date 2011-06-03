@@ -1,0 +1,35 @@
+<div id="create_page">
+  <table class="page_index">
+    <tr class="title">
+      <td>所有页面</td>
+    </tr>
+    <tr>
+	<td>
+	    <br />
+	    &nbsp;&nbsp;&nbsp;<%= link_to '创建页面',new_page_url %>
+	</td>
+    </tr>
+    <tr>
+	<td>
+	  <table id="pages" cellpadding="1" cellspacing="1">
+	   <th>页面列表</th>
+	   <th>操作</th>
+	   <% @pages.each do |page| -%>
+	   <tr class="<%= cycle('odd','even') -%>">
+		<td class="name">
+			<div style="margin-top:5px;margin-bottom:5px;margin-left:10px;">
+				<%= link_to page.permalink ,page_path(page) %> : <%= page.title %>
+			</div>
+		</td>
+		<td class="operation">
+		     [<%= link_to '编辑',edit_page_path(page) %>|<%= link_to '删除',page_url(page),:method=>:delete,:confirm=>'确定要删除页面吗？'%>]
+		</td>
+	   </tr>
+          <% end -%>
+	  </table>
+	</td>
+    </tr>
+    <tr style="height:10px">
+    </tr>
+  </table>
+</div> 

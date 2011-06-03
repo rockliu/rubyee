@@ -1,0 +1,36 @@
+<%= javascript_include_tag :fckeditor %>
+<% if @page.errors.count > 0 %>
+<div class="errors">
+    <%= error_messages_for :page %>
+</div>
+<% end %>
+<div id="create_page">
+  <% form_for :page,:url => pages_url,:html=>{:method => :post } do |f| -%>
+  <table class="page_index">
+    <tr class="title">
+      <td>创建页面</td>
+    </tr>
+    <tr>
+      <td>
+        <div style="margin-top:10px;margin-left:16px;">
+            <%= link_to '取消',pages_url %>
+         </div>
+        <div style="margin-top:10px;margin-left:16px;">
+        <b>主题：</b><br/>
+        <%= f.text_field :title,:class=>'page_text' %>
+        </div>
+        <div style="margin-top:10px;margin-left:16px;">
+        <b>内容：</b><br />
+        <%= fckeditor_textarea("page", "body", { :toolbarKit => 'Easy', :width => '98%', :height => '400px' }) %>
+        </div>
+      </td>
+    </tr>
+  </table>
+  <div style="margin-left:16px;margin-top:10px;margin-bottom:10px">
+  <%= submit_tag '创建',:class=>"button"%>
+  </div>
+  <% end -%>
+</div>
+
+
+

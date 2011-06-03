@@ -1,0 +1,9 @@
+<% if is_logged_in? %>
+         欢迎你：<b><%= logged_in_user.username %></b> |
+         <%= link_to '个人资料', edit_user_path(logged_in_user) %> |
+         <%= link_to '创建日志', new_entry_path(:user_id => logged_in_user) %> |
+         <%= link_to '注销', {:controller => 'account',:action => 'logout'},:method => :post %>
+ <% else %>
+         <%= link_to '注册',:controller =>'users',:action =>'new' %> |
+         <%= link_to '登录',:controller =>'account',:action =>'login' %>
+ <% end %>

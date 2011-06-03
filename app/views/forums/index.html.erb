@@ -1,0 +1,52 @@
+<div id="article_content">
+  <table class="article">
+    <tr class="title">
+      <td>技术论坛</td>
+    </tr>
+    <tr>
+      <td>
+        <div id="forum_create" style="margin-bottom:3px;margin-left:10px;">
+          <% if is_logged_in? and logged_in_user.has_role?('论坛版主')%>
+          <%= link_to '创建讨论区',new_forum_path ,:class => "button"%>
+          <% end %>
+        </div>
+        <div>
+          <table id="forums" cellpadding="0" cellspacing="1">
+            <tr>
+              <th>讨论区名称</th>
+              <th>主题</th>
+            </tr>
+          <% @forums.each do |forum| -%>
+            <tr class="<%=cycle('odd','even')%>">
+              <td class="name">
+                <div class="forumname" style="margin-top:10px">
+                  <%= link_to forum.name,forum_topics_path(:forum_id => forum) -%>
+                </div>
+                
+                <div class="forumdescription">
+                  <%= forum.description -%>
+                </div>
+                
+                <div style="margin-bottom:10px">
+                <% if is_logged_in? and logged_in_user.has_role?('论坛版主') -%>
+                  <br />
+                  &nbsp;&nbsp;&nbsp;<%= link_to '编辑' , edit_forum_path(forum) %><br />
+                  &nbsp;&nbsp;&nbsp;<%= link_to '删除' , forum_path(forum), :method => :delete,
+                                                         :message => '确定删除该讨论区？'%>
+                <% end -%>
+                </div>
+              </td>
+              <td class="topic">
+                <%= forum.topics_count %>
+              </td>
+            </tr>
+          <% end -%>
+          </table>
+        </div>
+      </td>
+    </tr>
+  </table>
+</div>
+
+
+

@@ -1,0 +1,35 @@
+<div id="create_page">
+  <table class="page_index">
+    <tr class="title">
+      <td>用户<%= @user.username %>的角色</td>
+    </tr>
+    <tr style="height:30px">
+      <td><b>&nbsp;&nbsp;&nbsp;已分配角色：</b></td>
+    </tr>
+    <tr>
+      <td>
+        <table id="roles" cellpadding="1px" cellspacing="1px">
+        <th>角色名称</th>
+        <th>操作</th>
+        <%= render :partial => 'role' , :collection => @user.roles %>
+        </table>
+      </td>
+    <tr>
+    <tr style="height:40px">
+      <td><b>&nbsp;&nbsp;&nbsp;可分配角色：</b></td>
+    </tr>
+    <tr>
+      <td>
+        <table id="roles" cellpadding="1px" cellspacing="1px">
+        <th>角色名称</th>
+        <th>操作</th>
+         <%= render :partial => 'role' , :collection => (@all_roles - @user.roles) %>
+        </table>
+      </td>
+    <tr>
+    <tr style="height:20px">
+    </tr>
+  </table>
+</div>
+
+

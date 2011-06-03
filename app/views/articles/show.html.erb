@@ -1,0 +1,25 @@
+<div id="article_content">
+  <table class="article">
+    <tr class="title">
+      <td>资讯内容</td>
+    </tr>
+    <tr>
+      <td>
+       <div id="article_content_title">
+        <%= @article.title %>
+       </div>
+       <div id="article_content_links">
+        <% if @article.category %>
+         所属分类:<%= link_to @article.category.name,category_articles_path(@article.category) %>
+         &nbsp;&nbsp;&nbsp;&nbsp;
+         该条资讯创建于<%= @article.created_at.strftime "%Y-%m-%d %H:%M" %>
+        <% end %>
+       </div>
+       <div id="article_content_body">
+         <%= textilize(coderay(@article.body)) %><br />
+         <%= link_to "返回资讯列表" ,articles_url %>
+       </div>
+      </td>
+    </tr>
+  </table>
+</div>
