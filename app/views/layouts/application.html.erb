@@ -6,6 +6,15 @@
     <%= stylesheet_link_tag 'coderay' %>
     <%= javascript_include_tag :defaults %>
     <%= yield :head %>
+    <!-- GoStats JavaScript Based Code -->
+    <script type="text/javascript" src="http://gostats.cn/js/counter.js"></script>
+    <script type="text/javascript">_gos='c3.gostats.cn';_goa=340426;
+    _got=5;_goi=1;_gol='﻿免费计数器';_GoStatsRun();</script>
+    <noscript><a target="_blank" title="﻿免费计数器" 
+    href="http://gostats.cn"><img alt="﻿免费计数器" 
+    src="http://c3.gostats.cn/bin/count/a_340426/t_5/i_1/counter.png" 
+    style="border-width:0" /></a></noscript>
+    <!-- End GoStats JavaScript Based Code -->
   </head>
   <body>
     <div id="container">
@@ -47,10 +56,4 @@
       </div>
     </div>
   </body>
-
-<script type="text/javascript">
-var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
-document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F9432f76c00b21a59db38757b57220d7e' type='text/javascript'%3E%3C/script%3E"));
-</script>
-
 </html>
