@@ -1,5 +1,9 @@
 module EntriesHelper
   def blog_title(user)
-    user.blog_title ||= user.username
+    if user.blog_title?
+      user.blog_title
+    else
+      user.username + "的技术博客"
+    end
   end
 end

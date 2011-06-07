@@ -1,7 +1,7 @@
 class PagesController < ApplicationController
   before_filter :check_admin_role,
-                :except => :show
-                
+                :except => :show,
+                :except => :show_index
   def index
 	@pages = Page.find(:all)
   end
@@ -48,9 +48,9 @@ class PagesController < ApplicationController
   end
   
   def show_index
-    @articles = Article.find(:all)
-    @topics = Topic.find(:all)
-    @entries = Entry.find(:all)
+    @articles = Article.find(:all,:limit => 5,:order => 'created_at DESC')
+    @topics = Topic.find(:all,:limit => 5,:order => 'created_at DESC')
+    @entries = Entry.find(:all,:limit => 5,:order => 'created_at DESC')
   end
 
 end

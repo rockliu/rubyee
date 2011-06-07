@@ -39,12 +39,13 @@
         <p>
           <b>发表评论：</b>
         </p>
+        </b>
         <% form_for (:comment,:url => comments_path(:user_id => @entry.user,:entry_id => @entry)) do |f| -%>
         <div>
           <%= f.text_area :body,:rows => 4,:cols => 40 %>
         </div>
         <div style="margin-top:10px;margin-bottom:15px;">
-          <%= submit_tag '提交评论', :class=>"button" %>
+          <%= submit_tag '提交评论', :class=>"button" ,:onclick=>'checkCommet()'%>
         </div>
         <% end -%>
        </div>

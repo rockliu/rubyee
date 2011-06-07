@@ -67,9 +67,11 @@ ActionController::Routing::Routes.draw do |map|
   end
   map.connect ':controller/:action/:id'
   map.connect ':controller/:action/:id.:format'
+  #map.index '/',:controller => 'pages',
+  #              :action => 'show',
+  #              :id => '1-欢迎页面'
   map.index '/',:controller => 'pages',
-                :action => 'show',
-                :id => '1-欢迎页面'
+                :action => 'show_index'
   map.show_user '/user/:username',
                 :controller => 'users',
                 :action => 'show_by_username'

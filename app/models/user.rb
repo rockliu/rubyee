@@ -33,6 +33,10 @@ class User < ActiveRecord::Base
     validates_length_of :password,:within => 4..20,:if => :password_required?,
                         :message => '密码最小5个字符，至多64个字符。'
     validates_length_of :profile,:maximum=>1000
+    
+    #电子邮件格式验证
+    validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i,
+                        :message => '电子邮件格式不正确。'
 
     def before_save
 	self.hashed_password = User.encrypt(password) if !self.password.blank?

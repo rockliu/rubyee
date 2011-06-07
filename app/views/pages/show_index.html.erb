@@ -1,0 +1,91 @@
+<div id="create_page">
+  <table class="page_index">
+    <tr class="title">
+      <td>最新资讯文章</td>
+    </tr>
+    <% @articles.each do |article| %>
+    <tr>
+      <td>
+       <div style="margin-top:10px;margin-bottom:10px">
+            <div id="article_title">
+            <%= link_to article.title,article_url(article)%>
+            </div>
+            <div id ="article_synopsis">
+            <%= article.synopsis %>
+            </div>
+            <div id ="article_links">
+              <table id="article_bottom">
+                <tr>
+                  <td align="left">
+                  </td>
+                  <td align="right">
+                    <%= article.user.username %>发布于<%= time_ago_in_words(article.created_at)%>
+                  </td>
+                </tr>
+              </table>
+            </div>
+       </div>
+      </td>
+    </tr>
+    <% end %>
+  </table>
+</div>
+<div id="create_page">
+  <table class="page_index">
+    <tr class="title">
+      <td>最新论坛主题</td>
+    </tr>
+    <% @topics.each do |topic| %>
+    <tr>
+      <td>
+       <div style="margin-top:10px;margin-bottom:10px">
+            <div id="article_title">
+            <%= link_to topic.name,forum_topic_url(topic.forum_id,topic.id)%>
+            </div>
+            <div id ="article_links">
+              <table id="article_bottom">
+                <tr>
+                  <td align="left">
+                  </td>
+                  <td align="right">
+                    <%= topic.user.username %>发布于<%= time_ago_in_words(topic.created_at)%>
+                  </td>
+                </tr>
+              </table>
+            </div>
+       </div>
+      </td>
+    </tr>
+    <% end %>
+  </table>
+</div>
+
+<div id="create_page">
+  <table class="page_index">
+    <tr class="title">
+      <td>最新博客日志</td>
+    </tr>
+    <% @entries.each do |entry| %>
+    <tr>
+      <td>
+       <div style="margin-top:10px;margin-bottom:10px">
+            <div id="article_title">
+            <%= link_to entry.title,entry_path(:user_id => entry.user,:id => entry)%>
+            </div>
+            <div id ="article_links">
+              <table id="article_bottom">
+                <tr>
+                  <td align="left">
+                  </td>
+                  <td align="right">
+                    <%= entry.user.username %>发布于<%= time_ago_in_words(entry.created_at)%>
+                  </td>
+                </tr>
+              </table>
+            </div>
+       </div>
+      </td>
+    </tr>
+    <% end %>
+  </table>
+</div>

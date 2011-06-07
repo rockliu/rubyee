@@ -20,6 +20,12 @@ div#header{
         padding:0px;
 }
 
+#footer{
+	width:802px;
+        margin-top:10px;
+	font-size:small
+}
+
 #sidemenu{
 	font-size:80%;
         float:left;
@@ -70,8 +76,6 @@ div#notice {
     width:802px;
     border: 1px solid #FFD324;
 }
-
-
 
 input.button {
     cursor: pointer;
@@ -153,15 +157,15 @@ div#topmenu{ font-size:80%;margin-top:5px;}
 
 /*导航样式*/
 
-div#navigator{ height:24px;width:805px;background-image:url(../images/bg_navigator.jpg);margin-top:6px;line-height:24px}
+div#navigator{ height:27px;width:805px;background-image:url(../images/bg_navigator.jpg);margin-top:6px;line-height:24px}
 div#navigator a{color:#fff;text-decoration: none}
 div#navigator a:hover{background-color:#F9992B;color:#fff;}
 table#navigator{ color:#fff;font-size:80%}
 
 /*登录注册*/
 
-div#login {margin-top:10px;border: 2px solid #CD2A2B;width:320px;margin-left:210px;}
-div#usernew {margin-top:10px;border: 2px solid #CD2A2B;width:320px;margin-left:210px;}
+div#login {margin-top:10px;border: 2px solid #CD2A2B;width:320px;margin-left:235px;}
+div#usernew {margin-top:10px;border: 2px solid #CD2A2B;width:320px;margin-left:235fpx;}
 div#article_content{margin-top:10px;border: 2px solid #CD2A2B;width:803px;margin-left:0px;}
 div#article{margin-top:10px;border: 2px solid #CD2A2B;width:801px;margin-left:0px;}
 .login{ color:#000;font-size:80%;width:320px;padding:0px;border-spacing:0px;}
@@ -236,8 +240,8 @@ div#forum_create{
 	margin-bottom:10px;
 	margin-top:10px;
 }
-div#create_forum{margin-top:10px;border: 2px solid #CD2A2B;width:320px;margin-left:210px;}
-div#create_topic{margin-top:10px;border: 2px solid #CD2A2B;width:400px;margin-left:150px;}
+div#create_forum{margin-top:10px;border: 2px solid #CD2A2B;width:320px;margin-left:235px;}
+div#create_topic{margin-top:10px;border: 2px solid #CD2A2B;width:400px;margin-left:195px;}
 .topic_new{color:#000;font-size:80%;width:400px;padding:0px;border-spacing:0px;}
 	
 /*页面样式*/
