@@ -1,7 +1,6 @@
 class PagesController < ApplicationController
   before_filter :check_admin_role,
-                :except => :show,
-                :except => :show_index
+                :except => [:show,:show_index]
   def index
 	@pages = Page.find(:all)
   end
